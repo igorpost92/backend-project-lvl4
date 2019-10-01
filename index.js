@@ -61,7 +61,7 @@ export default () => {
     pretty: true,
     compileDebug: true,
     locals: {
-      Title: 'Super mega todo list 2019',
+      Title: 'Task manager 2019',
     },
     basedir: path.join(__dirname, 'views'),
     helperPath: [
