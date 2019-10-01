@@ -5,9 +5,32 @@ html(lang="en")
   head
     title= Title
     script(src='/assets/main.js')
-  body
-    nav.navbar.navbar-light.bg-light
-      a.navbar-brand(href='/') Navbar
+
+  body.text-center
+    .d-flex.w-100.h-100.p-3.mx-auto.flex-column
+      header.masthead.mb-auto
+        .inner
+          h3.masthead-brand Cover
+          nav.nav.nav-masthead.justify-content-center
+            a.nav-link.active(href='#') Home
+            a.nav-link(href='#') Features
+            a.nav-link(href='#') Contact
+
+      main.inner.cover
+        - const msg = flash.get()
+        if msg
+          .alert.alert-info.m-3= msg
+
+        h1.cover-heading Task manager 2019.
+        p.lead
+          | Manage your task with the most powerful tool ever made.
+        p.lead
+          a.btn.btn-lg.btn-secondary(href='#') Try for free
+
+    block content
+
+    //nav.navbar.navbar-light.bg-light
+    //  a.navbar-brand(href='/') Navbar
 
     nav.navbar.navbar-expand-lg.navbar-light.bg-faded
       a.navbar-brand(href="/") Task Manager
@@ -26,8 +49,8 @@ html(lang="en")
               a.nav-link(href=urlFor('newSession')) Sign In
             li.nav-item
               a.nav-link(href=urlFor('newUser')) Sign Up
-    .container
-      - const msg = flash.get()
-      if msg
-        .alert.alert-info.m-3= msg
-      block content
+
+    .jumbotron
+      .container
+
+
