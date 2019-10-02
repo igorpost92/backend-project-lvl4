@@ -1,5 +1,8 @@
 all: compose-setup
 
+deploy:
+	git push heroku master
+
 prepare:
 	touch .bash_history
 	touch .env
