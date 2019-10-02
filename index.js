@@ -5,6 +5,7 @@ import Koa from 'koa';
 import Pug from 'koa-pug';
 import Router from 'koa-router';
 import koaLogger from 'koa-logger';
+import mount from 'koa-mount';
 import serve from 'koa-static';
 import koaWebpack from 'koa-webpack';
 import bodyParser from 'koa-bodyparser';
@@ -18,7 +19,7 @@ import webpackConfig from './webpack.config';
 import addRoutes from './routes';
 import container from './container';
 
-console.log('tuc', process.env.NODE_ENV);
+const isProduction = process.env.NODE_ENV === 'production';
 
 const errorHandler = () => async (ctx, next) => {
   const rollbar = new Rollbar({
@@ -56,12 +57,14 @@ export default () => {
     return null;
   }));
 
-  app.use(serve(path.join(__dirname, 'dist')));
-
-  if (process.env.NODE_ENV !== 'production') {
+  if (!isProduction) {
     koaWebpack({
       config: webpackConfig,
     }).then(m => app.use(m));
+  } else {
+    const urlPrefix = '/assets';
+    const assetsPath = path.join(__dirname, 'dist');
+    app.use(mount(urlPrefix, serve(assetsPath)));
   }
 
   app.use(koaLogger());
