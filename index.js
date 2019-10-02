@@ -20,6 +20,7 @@ import addRoutes from './routes';
 import container from './container';
 
 const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = !isProduction;
 
 const errorHandler = () => async (ctx, next) => {
   const rollbar = new Rollbar({
@@ -77,7 +78,7 @@ export default () => {
 
   const pug = new Pug({
     viewPath: path.join(__dirname, 'views'),
-    noCache: process.env.NODE_ENV === 'development',
+    noCache: isDevelopment,
     debug: true,
     pretty: true,
     compileDebug: true,
