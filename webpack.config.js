@@ -10,8 +10,10 @@ module.exports = {
     path.join(__dirname, 'src', 'index.js'),
   ],
   output: {
-    path: path.join(__dirname, 'dist', 'public'),
-    filename: 'main.js',
+    // path: path.join(__dirname, 'dist', 'public'),
+    // filename: 'main.js',
+    // publicPath: '/assets/',
+    path: `${__dirname}/dist/public`,
     publicPath: '/assets/',
   },
   module: {
