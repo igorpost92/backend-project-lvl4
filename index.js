@@ -22,9 +22,11 @@ import container from './container';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
+console.log('tok', process.env.ROLLBAR_TOKEN);
+
 const errorHandler = () => async (ctx, next) => {
   const rollbar = new Rollbar({
-    accessToken: '747a4dce73c14976a0cc06c872897778',
+    accessToken: process.env.ROLLBAR_TOKEN,
     captureUncaught: true,
     captureUnhandledRejections: true,
   });
