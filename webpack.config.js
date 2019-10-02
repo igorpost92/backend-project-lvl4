@@ -1,13 +1,12 @@
-// import path from 'path';
 // import webpack from 'webpack';
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
   entry: [
     path.join(__dirname, 'src', 'index.js'),
   ],
-  // entry: ['./src/index.js'],
   output: {
     path: path.join(__dirname, 'dist', 'assets'),
     filename: 'main.js',
@@ -22,7 +21,22 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer,
+              ],
+            },
+          },
+        ],
       },
     ],
   },

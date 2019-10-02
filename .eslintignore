@@ -2,4 +2,3 @@ node_modules
 dist
 flow-typed
 public
-postcss.config.js
