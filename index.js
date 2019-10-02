@@ -5,6 +5,7 @@ import Koa from 'koa';
 import Pug from 'koa-pug';
 import Router from 'koa-router';
 import koaLogger from 'koa-logger';
+import mount from 'koa-mount';
 import serve from 'koa-static';
 import koaWebpack from 'koa-webpack';
 import bodyParser from 'koa-bodyparser';
@@ -41,9 +42,10 @@ export default () => {
     return null;
   }));
 
+  const urlPrefix = '/assets';
   const assetsPath = path.join(__dirname, './dist/public');
   console.log('assetsPath', assetsPath);
-  app.use(serve('/assets', assetsPath));
+  app.use(mount(urlPrefix, serve(assetsPath)));
 
   if (process.env.NODE_ENV !== 'production') {
     koaWebpack({
