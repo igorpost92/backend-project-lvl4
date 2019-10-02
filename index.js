@@ -40,7 +40,9 @@ export default () => {
     }
     return null;
   }));
-  app.use(serve(path.join(__dirname, 'dist/public')));
+  app.use(serve('/assets', path.join(__dirname, 'dist/public')));
+  
+  console.log('tt', path.join(__dirname, 'dist/public'));
 
   if (process.env.NODE_ENV !== 'production') {
     koaWebpack({
