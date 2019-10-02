@@ -63,7 +63,7 @@ export default () => {
     }).then(m => app.use(m));
   } else {
     const urlPrefix = '/assets';
-    const assetsPath = path.join(__dirname, 'dist');
+    const assetsPath = path.join(__dirname, 'dist/assets');
     app.use(mount(urlPrefix, serve(assetsPath)));
   }
 
