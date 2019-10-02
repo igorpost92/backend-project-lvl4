@@ -59,7 +59,6 @@
     "koa-generic-session": "^2.0.1",
     "koa-logger": "^3.2.0",
     "koa-methodoverride": "^2.0.0",
-    "koa-mount": "^4.0.0",
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
