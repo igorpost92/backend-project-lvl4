@@ -2,13 +2,15 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 
+console.log('webp', process.env.NODE_ENV);
+
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
   entry: [
     path.join(__dirname, 'src', 'index.js'),
   ],
   output: {
-    path: path.join(__dirname, 'dist', 'assets'),
+    path: path.join(__dirname, 'dist', 'public'),
     filename: 'main.js',
     publicPath: '/assets/',
   },

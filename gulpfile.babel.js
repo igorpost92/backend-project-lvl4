@@ -20,6 +20,5 @@ gulp.task('console', () => {
 });
 
 gulp.task('server', (cb) => {
-  console.log('start gulp');
   getServer().listen(process.env.PORT || 4000, cb);
 });
