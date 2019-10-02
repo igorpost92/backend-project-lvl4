@@ -12,12 +12,27 @@ import session from 'koa-generic-session';
 import flash from 'koa-flash-simple';
 import _ from 'lodash';
 import methodOverride from 'koa-methodoverride';
+import Rollbar from 'rollbar';
 
 import webpackConfig from './webpack.config';
 import addRoutes from './routes';
 import container from './container';
 
 console.log('tuc', process.env.NODE_ENV);
+
+const errorHandler = () => async (ctx, next) => {
+  const rollbar = new Rollbar({
+    accessToken: '747a4dce73c14976a0cc06c872897778',
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+  });
+
+  try {
+    await next();
+  } catch (e) {
+    rollbar.error(e, ctx.request);
+  }
+};
 
 export default () => {
   const app = new Koa();
@@ -50,6 +65,8 @@ export default () => {
   }
 
   app.use(koaLogger());
+  app.use(errorHandler());
+
   const router = new Router();
   addRoutes(router, container);
   app.use(router.allowedMethods());

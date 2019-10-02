@@ -66,6 +66,7 @@
     "lodash": "^4.17.11",
     "pg": "^7.8.0",
     "popper.js": "^1.14.7",
+    "rollbar": "^2.13.0",
     "sequelize": "^4.42.0",
     "sequelize-cli": "^5.4.0",
     "sqlite3": "^4.1.0",
