@@ -42,10 +42,12 @@ export default () => {
     return null;
   }));
 
-  const urlPrefix = '/assets';
-  const assetsPath = path.join(__dirname, './dist/public');
-  console.log('assetsPath', assetsPath);
-  app.use(mount(urlPrefix, serve(assetsPath)));
+  // const urlPrefix = '/assets';
+  // const assetsPath = path.join(__dirname, './dist/public');
+  // console.log('assetsPath', assetsPath);
+  // app.use(mount(urlPrefix, serve(assetsPath)));
+
+  app.use(serve(path.join(__dirname, 'public')));
 
   if (process.env.NODE_ENV !== 'production') {
     koaWebpack({

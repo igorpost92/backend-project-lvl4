@@ -13,8 +13,8 @@ module.exports = {
     // path: path.join(__dirname, 'dist', 'public'),
     // filename: 'main.js',
     // publicPath: '/assets/',
-    path: `${__dirname}/dist/public`,
-    publicPath: '/assets/',
+    path: `${__dirname}/public/assets`,
+    publicPath: '/public/assets/',
   },
   module: {
     rules: [
