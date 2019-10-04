@@ -62,6 +62,9 @@ export default () => {
   if (!isProduction) {
     koaWebpack({
       config: webpackConfig,
+      devMiddleware: {
+        logLevel: 'error',
+      },
     }).then(m => app.use(m));
   } else {
     const urlPrefix = '/assets';
