@@ -22,8 +22,6 @@ import container from './container';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
-console.log('tok', process.env.ROLLBAR_TOKEN);
-
 const errorHandler = () => async (ctx, next) => {
   const rollbar = new Rollbar({
     accessToken: process.env.ROLLBAR_TOKEN,
@@ -35,6 +33,7 @@ const errorHandler = () => async (ctx, next) => {
     await next();
   } catch (e) {
     rollbar.error(e, ctx.request);
+    throw e;
   }
 };
 

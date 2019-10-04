@@ -1,9 +1,12 @@
 extends /layouts/application.pug
 
 block content
-  +formFor(f, { url: urlFor('users'), method: 'post' })
-    +input(f, 'email')
-    +input(f, 'firstName')
-    +input(f, 'lastName')
-    +input(f, 'password', { as: 'password' })
-    +button(f)
+  .container.text-center
+    h2.mb-4 New user
+    +formFor({ url: urlFor('users'), method: 'post' })
+      +input(f, 'email', { label: 'E-mail' })
+      +input(f, 'password', { as: 'password', label: 'Password' })
+      +input(f, 'firstName', { label: 'First name' })
+      +input(f, 'lastName', { label: 'Last name' })
+      .col-lg-11
+        +button()(class='btn-primary' value='Sign up')
