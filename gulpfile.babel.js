@@ -25,3 +25,7 @@ gulp.task('console', () => {
 gulp.task('server', (cb) => {
   getServer().listen(process.env.PORT || 4000, cb);
 });
+
+gulp.task('sync-db', () => {
+  db.sequelize.sync();
+});
