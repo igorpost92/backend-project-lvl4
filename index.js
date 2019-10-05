@@ -51,7 +51,6 @@ export default () => {
       devMiddleware: {
         logLevel: 'error',
       },
-      hotClient: false,
     }).then(m => app.use(m));
   } else if (isProduction) {
     const urlPrefix = '/assets';
