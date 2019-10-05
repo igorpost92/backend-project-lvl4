@@ -40,8 +40,8 @@ export default (sequelize, DataTypes) => {
       },
       validate: {
         len: {
-          args: [8, +Infinity],
-          msg: 'Password must contain at least 8 symbols',
+          args: [1, +Infinity],
+          msg: 'Password must contain at least 1 symbol',
         },
       },
     },
