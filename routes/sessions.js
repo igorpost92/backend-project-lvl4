@@ -9,7 +9,7 @@ export default (router) => {
       ctx.render('sessions/new', { f: buildFormObj(data) });
     })
     .post('session', '/session', async (ctx) => {
-      const { email, password } = ctx.request.body.form;
+      const { email, password } = ctx.request.body;
       const user = await User.findOne({
         where: {
           email,
@@ -21,8 +21,10 @@ export default (router) => {
         return;
       }
 
-      ctx.flash.set('email or password were wrong');
-      ctx.render('sessions/new', { f: buildFormObj({ email }) });
+      // TODO: doesn't work without redirect
+      ctx.flash.set('E-mail or password were wrong');
+      ctx.redirect(router.url('newSession'));
+      // ctx.render('sessions/new', { f: buildFormObj({ email }) });
     })
     .delete('session', '/session', (ctx) => {
       ctx.session = {};

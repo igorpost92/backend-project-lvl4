@@ -15,8 +15,6 @@
   "scripts": {
     "test": "jest",
     "start": "gulp server",
-    "seq": "sequelize-cli",
-    "migrate": "npm run seq db:migrate",
     "build": "npx webpack -p --env production",
     "postinstall": "npm run build"
   },

@@ -1,7 +1,10 @@
 extends /layouts/application.pug
 
 block content
-  +formFor(f, { url: urlFor('session'), method: 'post' })
-    +input(f, 'email')
-    +input(f, 'password', { as: 'password' })
-    +button(f)
+  .container.text-center
+    h2.mb-4 Log in
+    +formFor({ url: urlFor('session'), method: 'post' })
+      +input(f, 'email', { label: 'E-mail' })
+      +input(f, 'password', { as: 'password', label: 'Password' })
+      .col-lg-11
+        +button()(class='btn-primary' value='Sign in')
