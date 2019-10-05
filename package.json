@@ -47,6 +47,7 @@
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.5",
     "bootstrap": "^4.2.1",
+    "classnames": "^2.2.6",
     "css-loader": "^2.1.0",
     "debug": "^4.1.1",
     "dotenv": "^6.2.0",

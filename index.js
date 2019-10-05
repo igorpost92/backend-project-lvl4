@@ -12,30 +12,16 @@ import bodyParser from 'koa-bodyparser';
 import session from 'koa-generic-session';
 import flash from 'koa-flash-simple';
 import _ from 'lodash';
+import cn from 'classnames';
 import methodOverride from 'koa-methodoverride';
-import Rollbar from 'rollbar';
 
 import webpackConfig from './webpack.config';
 import addRoutes from './routes';
 import container from './container';
+import rollbarLogger from './lib/rollbarLogger';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
-
-const errorHandler = () => async (ctx, next) => {
-  const rollbar = new Rollbar({
-    accessToken: process.env.ROLLBAR_TOKEN,
-    captureUncaught: true,
-    captureUnhandledRejections: true,
-  });
-
-  try {
-    await next();
-  } catch (e) {
-    rollbar.error(e, ctx.request);
-    throw e;
-  }
-};
 
 export default () => {
   const app = new Koa();
@@ -73,7 +59,7 @@ export default () => {
   }
 
   app.use(koaLogger());
-  app.use(errorHandler());
+  app.use(rollbarLogger());
 
   const router = new Router();
   addRoutes(router, container);
@@ -92,6 +78,7 @@ export default () => {
     basedir: path.join(__dirname, 'views'),
     helperPath: [
       { _ },
+      { cn },
       { urlFor: (...args) => router.url(...args) },
     ],
   });
