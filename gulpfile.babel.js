@@ -5,6 +5,7 @@ import gulp from 'gulp';
 import repl from 'repl';
 import container from './container';
 import getServer from '.';
+import db from './models';
 
 // gulp.task('default', console.log('hello!'));
 
@@ -17,6 +18,8 @@ gulp.task('console', () => {
   Object.keys(container).forEach((key) => {
     replServer.context[key] = container[key];
   });
+
+  replServer.context.db = db;
 });
 
 gulp.task('server', (cb) => {
