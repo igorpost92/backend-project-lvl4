@@ -11,7 +11,7 @@ describe('requests', () => {
   });
 
   beforeEach(() => {
-    server = app().listen();
+    server = app().callback();
   });
 
   it('GET 200', async () => {
@@ -24,10 +24,5 @@ describe('requests', () => {
     const res = await request.agent(server)
       .get('/wrong-path');
     expect(res).toHaveHTTPStatus(404);
-  });
-
-  afterEach((done) => {
-    server.close();
-    done();
   });
 });

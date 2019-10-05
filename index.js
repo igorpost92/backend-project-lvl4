@@ -21,7 +21,7 @@ import container from './container';
 import rollbarLogger from './lib/rollbarLogger';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const isDevelopment = !isProduction;
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 export default () => {
   const app = new Koa();
@@ -45,14 +45,15 @@ export default () => {
     return null;
   }));
 
-  if (!isProduction) {
+  if (isDevelopment) {
     koaWebpack({
       config: webpackConfig,
       devMiddleware: {
         logLevel: 'error',
       },
+      hotClient: false,
     }).then(m => app.use(m));
-  } else {
+  } else if (isProduction) {
     const urlPrefix = '/assets';
     const assetsPath = path.join(__dirname, 'dist/assets');
     app.use(mount(urlPrefix, serve(assetsPath)));
