@@ -1,4 +1,4 @@
-// import webpack from 'webpack';
+const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 
@@ -40,11 +40,11 @@ module.exports = {
     ],
   },
   plugins: [
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery',
-    //   'window.jQuery': 'jquery',
-    //   Popper: ['popper.js', 'default'],
-    // }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default'],
+    }),
   ],
 };
