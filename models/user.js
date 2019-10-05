@@ -2,17 +2,31 @@ import { encrypt } from '../lib/secure';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'First name must be filled' },
+      },
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Last name must be filled' },
+      },
+    },
     email: {
       type: DataTypes.STRING,
       unique: true,
+      allowNull: false,
       validate: {
-        isEmail: true,
+        isEmail: { msg: 'Invalid email address' },
       },
     },
     passwordDigest: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: true,
       },
@@ -25,7 +39,10 @@ export default (sequelize, DataTypes) => {
         return value;
       },
       validate: {
-        len: [1, +Infinity],
+        len: {
+          args: [8, +Infinity],
+          msg: 'Password must contain at least 8 symbols',
+        },
       },
     },
   }, {

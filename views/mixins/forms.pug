@@ -12,15 +12,17 @@ mixin formFor(options = {})
 mixin input(f, property, options = {})
   - const value = f.object[property] === undefined ? '' : f.object[property];
   - const { label = property, as = 'text' } = options;
+  - const errors = f.errors[property];
 
-  .form-group.row(class=(f.errors[property] && 'has-danger'))
+  .form-group.row
     label.col-lg-2.col-form-label= label
-    input.col-lg-8(name=getInputName(f, property) class='form-control' type=options['as'] value=`${value}`)
-    if f.errors[property]
-      .form-control-feedback= f.errors[property].map(({ message }) => message).join('. ')
+    .col-lg-8
+      input(name= property class= cn('form-control', { 'is-invalid': errors }) type=options['as'] value=`${value}`)
+      if errors
+        .invalid-feedback= errors.map(({ message }) => message).join('. ')
 
 mixin button(type = 'submit')
-  - const className = 'btn' + (attributes.class ? ' ' + attributes.class : '');
+  - const className = cn('btn', attributes.class);
   - const value = attributes.value || 'Save';
 
   .form-group
