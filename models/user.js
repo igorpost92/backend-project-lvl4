@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: { msg: 'This email is already in use' },
       allowNull: false,
       validate: {
         isEmail: { msg: 'Invalid email address' },

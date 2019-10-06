@@ -1,0 +1,15 @@
+extends /layouts/application.pug
+
+block content
+  .container.text-center
+    h2.mb-4 User
+    .offset-lg-2
+      .row
+        .col-lg-2.h5 Email
+        .col-lg-8= user.email
+      .row
+        .col-lg-2.h5 First name
+        .col-lg-8= user.firstName
+      .row
+        .col-lg-2.h5 Last name
+        .col-lg-8= user.lastName

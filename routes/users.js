@@ -7,6 +7,20 @@ export default (router) => {
       const users = await User.findAll();
       ctx.render('users', { users });
     })
+    .get('userInfo', '/users/:id', async (ctx) => {
+      const { id } = ctx.params;
+
+
+      // TODO:
+      const user = await User.findByPk(id);
+
+      if (!user) {
+        ctx.render('errors/notFound');
+        return;
+      }
+
+      ctx.render('users/user', { user });
+    })
     .get('newUser', '/users/new', (ctx) => {
       const user = User.build();
       ctx.render('users/new', { f: buildFormObj(user) });
