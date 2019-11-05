@@ -6,7 +6,7 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: { msg: 'First name must be filled' },
+        notEmpty: { msg: 'First name must be filleds' },
       },
     },
     lastName: {
