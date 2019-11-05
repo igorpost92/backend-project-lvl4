@@ -7,6 +7,10 @@ export default (router) => {
       const users = await User.findAll();
       ctx.render('users', { users });
     })
+    .get('newUser', '/users/new', (ctx) => {
+      const user = User.build();
+      ctx.render('users/new', { f: buildFormObj(user) });
+    })
     .get('userInfo', '/users/:id', async (ctx) => {
       const { id } = ctx.params;
 
@@ -20,10 +24,6 @@ export default (router) => {
       }
 
       ctx.render('users/user', { user });
-    })
-    .get('newUser', '/users/new', (ctx) => {
-      const user = User.build();
-      ctx.render('users/new', { f: buildFormObj(user) });
     })
     .post('users', '/users', async (ctx) => {
       const { body } = ctx.request;
