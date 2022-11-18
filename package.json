@@ -89,6 +89,6 @@
     "nodemon": "^1.18.10",
     "postcss-loader": "^3.0.0",
     "supertest": "^3.4.2",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.3.12"
   }
 }
